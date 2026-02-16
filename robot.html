@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Robot — Fenrir 23944</title>
+  <style>
+/* ============================================
+   ROBOLOBOS FENRIR 23944 — Design System
+   Dark Technical / Engineering Aesthetic
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600&family=Inter:wght@300;400;500&display=swap');
+
+:root {
+  /* Color Palette */
+  --black: #0a0f0c;
+  --black-card: #111a14;
+  --black-border: #1e2e24;
+  --green-dark: #1a3a2a;
+  --green-mid: #234d38;
+  --green-accent: #2d6b4a;
+  --green-bright: #3d9b6a;
+  --white: #f0f2ef;
+  --white-dim: #c8ccc6;
+
+  /* Badge colors */
+  --amber: #d4a054;
+  --blue: #54a0d4;
+  --purple: #a054d4;
+
+  /* Typography */
+  --heading: 'Rajdhani', sans-serif;
+  --mono: 'Source Code Pro', monospace;
+  --body: 'Inter', sans-serif;
+}
+
+/* ---- Reset & Base ---- */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--body);
+  font-weight: 300;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- Navigation ---- */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: rgba(10, 15, 12, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--black-border);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+}
+
+.nav-brand {
+  font-family: var(--heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--green-bright);
+  text-decoration: none;
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+}
+
+.nav-brand span {
+  color: var(--white-dim);
+  font-weight: 400;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--white-dim);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--green-bright);
+}
+
+.nav-hamburger {
+  display: none;
+  background: none;
+  border: 1px solid var(--black-border);
+  border-radius: 4px;
+  color: var(--white-dim);
+  padding: 0.4rem 0.6rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.nav-hamburger:hover {
+  border-color: var(--green-accent);
+  color: var(--white);
+}
+
+/* ---- Hero Section ---- */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 6rem 2rem 4rem;
+  position: relative;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 40%, rgba(61, 155, 106, 0.15) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 30% 70%, rgba(45, 107, 74, 0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(30, 46, 36, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(30, 46, 36, 0.06) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 20%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 20%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.hero-tag {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--green-bright);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  animation: fadeUp 0.8s ease forwards;
+  animation-delay: 0.2s;
+  opacity: 0;
+}
+
+.hero-title {
+  font-family: var(--heading);
+  font-size: clamp(3rem, 8vw, 7rem);
+  font-weight: 700;
+  line-height: 0.95;
+  color: var(--white);
+  animation: fadeUp 0.8s ease forwards;
+  animation-delay: 0.4s;
+  opacity: 0;
+}
+
+.hero-title .accent {
+  color: var(--green-bright);
+}
+
+.hero-id {
+  font-family: var(--mono);
+  font-size: clamp(1rem, 2.5vw, 1.6rem);
+  font-weight: 400;
+  color: var(--white-dim);
+  letter-spacing: 0.3em;
+  animation: fadeUp 0.8s ease forwards;
+  animation-delay: 0.6s;
+  opacity: 0;
+}
+
+.hero-desc {
+  font-family: var(--body);
+  font-size: 1.05rem;
+  font-weight: 300;
+  color: var(--white-dim);
+  max-width: 540px;
+  line-height: 1.6;
+  animation: fadeUp 0.8s ease forwards;
+  animation-delay: 0.8s;
+  opacity: 0;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 3rem;
+  margin-top: 1rem;
+  animation: fadeUp 0.8s ease forwards;
+  animation-delay: 1.0s;
+  opacity: 0;
+}
+
+.hero-stat-number {
+  font-family: var(--heading);
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--green-bright);
+  line-height: 1;
+}
+
+.hero-stat-label {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  font-weight: 500;
+  color: var(--white-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-top: 0.3rem;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---- Content Wrapper ---- */
+.content {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* ---- Section ---- */
+.section {
+  padding: 5rem 0;
+}
+
+.section-label {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--green-bright);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.section-title {
+  font-family: var(--heading);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--white);
+  margin-bottom: 0.75rem;
+}
+
+.section-desc {
+  font-family: var(--body);
+  font-size: 0.95rem;
+  font-weight: 300;
+  color: var(--white-dim);
+  max-width: 600px;
+  line-height: 1.6;
+  margin-bottom: 3rem;
+}
+
+/* ---- Cards ---- */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.25rem;
+}
+
+.card {
+  background: var(--black-card);
+  border: 1px solid var(--black-border);
+  border-radius: 8px;
+  padding: 2rem;
+  transition: border-color 0.3s, transform 0.3s;
+}
+
+.card:hover {
+  border-color: var(--green-accent);
+  transform: translateY(-2px);
+}
+
+.card-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  background: var(--green-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  margin-bottom: 1.25rem;
+}
+
+.card-title {
+  font-family: var(--heading);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 0.6rem;
+}
+
+.card-body {
+  font-family: var(--body);
+  font-size: 0.88rem;
+  font-weight: 300;
+  color: var(--white-dim);
+  line-height: 1.6;
+}
+
+/* ---- Accordion / Expandable Entries ---- */
+.accordion-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.accordion-item {
+  background: var(--black-card);
+  border: 1px solid var(--black-border);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: border-color 0.3s;
+}
+
+.accordion-item:hover {
+  border-color: var(--green-accent);
+}
+
+.accordion-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 2rem;
+  cursor: pointer;
+  user-select: none;
+  gap: 1rem;
+}
+
+.accordion-header-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.accordion-badge {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.badge-green {
+  background: rgba(61, 155, 106, 0.15);
+  color: var(--green-bright);
+}
+
+.badge-amber {
+  background: rgba(212, 160, 84, 0.15);
+  color: var(--amber);
+}
+
+.badge-blue {
+  background: rgba(84, 160, 212, 0.15);
+  color: var(--blue);
+}
+
+.badge-purple {
+  background: rgba(160, 84, 212, 0.15);
+  color: var(--purple);
+}
+
+.accordion-title {
+  font-family: var(--heading);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--white);
+}
+
+.accordion-meta {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.accordion-meta-item {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--white-dim);
+  white-space: nowrap;
+}
+
+.accordion-meta-item .value {
+  color: var(--green-bright);
+}
+
+.accordion-toggle {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--white-dim);
+  background: none;
+  border: 1px solid var(--black-border);
+  border-radius: 4px;
+  padding: 0.35rem 0.75rem;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+
+.accordion-toggle:hover {
+  border-color: var(--green-accent);
+  color: var(--white);
+}
+
+.accordion-body {
+  display: none;
+  border-top: 1px solid var(--black-border);
+  padding: 2rem;
+}
+
+.accordion-body.open {
+  display: block;
+}
+
+.accordion-body-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.accordion-video-wrap {
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--black);
+  border: 1px solid var(--black-border);
+  aspect-ratio: 16 / 9;
+}
+
+.accordion-video-wrap iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.accordion-video-wrap .placeholder-video {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--white-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.accordion-path-img {
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--black);
+  border: 1px solid var(--black-border);
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.accordion-path-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.accordion-path-img .placeholder-img {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--white-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-align: center;
+  padding: 1rem;
+}
+
+.timestamp-list {
+  list-style: none;
+  margin-top: 1.5rem;
+  grid-column: 1 / -1;
+}
+
+.timestamp-list h4 {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--green-bright);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 0.75rem;
+}
+
+.timestamp-row {
+  display: flex;
+  align-items: baseline;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid rgba(30, 46, 36, 0.5);
+}
+
+.timestamp-row:last-child {
+  border-bottom: none;
+}
+
+.timestamp-time {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--green-bright);
+  min-width: 55px;
+  flex-shrink: 0;
+}
+
+.timestamp-desc {
+  font-family: var(--body);
+  font-size: 0.88rem;
+  font-weight: 300;
+  color: var(--white-dim);
+}
+
+/* ---- Pipeline / Process Flow ---- */
+.pipeline {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.pipeline-step {
+  background: var(--green-dark);
+  border: 1px solid var(--green-accent);
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--white);
+}
+
+.pipeline-arrow {
+  color: var(--green-accent);
+  font-size: 1.2rem;
+}
+
+/* ---- Contact Section ---- */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem;
+  background: var(--black-card);
+  border: 1px solid var(--black-border);
+  border-radius: 8px;
+  text-decoration: none;
+  transition: border-color 0.3s, transform 0.3s;
+}
+
+.contact-item:hover {
+  border-color: var(--green-accent);
+  transform: translateY(-2px);
+}
+
+.contact-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  background: var(--green-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.contact-label {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--green-bright);
+  margin-bottom: 0.15rem;
+}
+
+.contact-value {
+  font-family: var(--body);
+  font-size: 0.88rem;
+  font-weight: 300;
+  color: var(--white-dim);
+}
+
+/* ---- Sponsor Grid ---- */
+.sponsor-tiers {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.sponsor-tier-label {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--green-bright);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--black-border);
+}
+
+.sponsor-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.sponsor-card {
+  background: var(--black-card);
+  border: 1px solid var(--black-border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80px;
+  transition: border-color 0.3s;
+}
+
+.sponsor-card:hover {
+  border-color: var(--green-accent);
+}
+
+.sponsor-card span {
+  font-family: var(--heading);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--white-dim);
+  text-align: center;
+}
+
+/* ---- Robot Page Placeholder ---- */
+.coming-soon {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 1rem;
+}
+
+.coming-soon-icon {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.coming-soon h2 {
+  font-family: var(--heading);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--white);
+}
+
+.coming-soon p {
+  font-family: var(--body);
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--white-dim);
+  max-width: 400px;
+}
+
+/* ---- Footer ---- */
+.footer {
+  border-top: 1px solid var(--black-border);
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.footer-brand {
+  font-family: var(--heading);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--green-bright);
+  margin-bottom: 0.4rem;
+}
+
+.footer-sub {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: var(--white-dim);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.footer-links {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.footer-links a {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--white-dim);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover {
+  color: var(--green-bright);
+}
+
+/* ---- Scroll Reveal ---- */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---- Utility ---- */
+.text-green { color: var(--green-bright); }
+.text-dim { color: var(--white-dim); }
+
+/* ---- Responsive (≤768px) ---- */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+
+  .nav-links.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background: rgba(10, 15, 12, 0.95);
+    backdrop-filter: blur(16px);
+    padding: 1.5rem 2rem;
+    gap: 1rem;
+    border-bottom: 1px solid var(--black-border);
+  }
+
+  .nav-hamburger {
+    display: block;
+  }
+
+  .hero {
+    padding: 6rem 1.25rem 3rem;
+  }
+
+  .hero-stats {
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .section {
+    padding: 3rem 0;
+  }
+
+  .content {
+    padding: 0 1.25rem;
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .accordion-body-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .accordion-header {
+    padding: 1.25rem 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .accordion-meta {
+    gap: 0.75rem;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pipeline {
+    justify-content: center;
+  }
+
+  .sponsor-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+}
+
+</style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <a href="index.html" class="nav-brand">FENRIR <span>23944</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">About</a></li>
+      <li><a href="autonomous.html">Autonomous</a></li>
+      <li><a href="robot.html" class="active">Robot</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <button class="nav-hamburger" aria-label="Toggle navigation">☰</button>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" style="min-height: 50vh;">
+    <div class="hero-content">
+      <p class="hero-tag">Fenrir 23944 &middot; DECODE 2025–2026</p>
+      <h1 class="hero-title">THE <span class="accent">ROBOT</span></h1>
+      <p class="hero-desc">A detailed breakdown of every subsystem — drivetrain, intake, outtake, sensors, and more. Coming soon.</p>
+    </div>
+  </section>
+
+  <!-- Coming Soon Content -->
+  <div class="content">
+    <section class="section">
+      <div class="coming-soon fade-in">
+        <div class="coming-soon-icon">🤖</div>
+        <h2>Under Construction</h2>
+        <p>We're documenting every subsystem with photos and specs. This page will be updated once the robot is competition-ready.</p>
+      </div>
+    </section>
+
+    <!-- Subsystem Preview (placeholders for later) -->
+    <section class="section fade-in">
+      <p class="section-label">01 / Subsystems</p>
+      <h2 class="section-title">What's Coming</h2>
+      <p class="section-desc">Each of these sections will include photos, CAD renders, and detailed specs once they're finalized.</p>
+
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-icon">🛞</div>
+          <h3 class="card-title">Drivetrain</h3>
+          <p class="card-body">Drive configuration, motor specs, gear ratios, wheel type, and field speed data.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🦾</div>
+          <h3 class="card-title">Intake</h3>
+          <p class="card-body">How we collect game elements — mechanism type, reach, cycle time, and reliability stats.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🎯</div>
+          <h3 class="card-title">Outtake / Scoring</h3>
+          <p class="card-body">Delivery mechanism for baskets and chambers — lift specs, extension, and scoring consistency.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">📷</div>
+          <h3 class="card-title">Vision & Sensors</h3>
+          <p class="card-body">Camera setup for AprilTag detection, color sensor for sample sorting, IMU for heading correction.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🔋</div>
+          <h3 class="card-title">Electronics</h3>
+          <p class="card-body">Control Hub, expansion hub, wiring layout, and power management details.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">📐</div>
+          <h3 class="card-title">CAD & Design</h3>
+          <p class="card-body">Full CAD model, design rationale, and iteration history from concept to final build.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-brand">FENRIR 23944</div>
+    <p class="footer-sub">Robolobos &middot; Cedar Park High School &middot; FTC DECODE 2025–2026</p>
+    <div class="footer-links">
+      <a href="index.html">About</a>
+      <a href="autonomous.html">Autonomous</a>
+      <a href="robot.html">Robot</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </footer>
+
+  <script>
+// ============================================
+// ROBOLOBOS FENRIR 23944 — Shared JS
+// ============================================
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  // ---- Mobile Nav Toggle ----
+  const hamburger = document.querySelector('.nav-hamburger');
+  const navLinks = document.querySelector('.nav-links');
+
+  if (hamburger && navLinks) {
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+      hamburger.textContent = navLinks.classList.contains('open') ? '✕' : '☰';
+    });
+
+    // Close nav when a link is clicked
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        hamburger.textContent = '☰';
+      });
+    });
+  }
+
+  // ---- Accordion Toggle ----
+  document.querySelectorAll('.accordion-header').forEach(header => {
+    header.addEventListener('click', () => {
+      const body = header.nextElementSibling;
+      const btn = header.querySelector('.accordion-toggle');
+
+      if (body.classList.contains('open')) {
+        body.classList.remove('open');
+        if (btn) btn.textContent = '[ + ]';
+      } else {
+        body.classList.add('open');
+        if (btn) btn.textContent = '[ − ]';
+      }
+    });
+  });
+
+  // ---- Scroll Reveal (IntersectionObserver) ----
+  const fadeEls = document.querySelectorAll('.fade-in');
+
+  if (fadeEls.length > 0 && 'IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    fadeEls.forEach(el => observer.observe(el));
+  } else {
+    // Fallback: just show everything
+    fadeEls.forEach(el => el.classList.add('visible'));
+  }
+
+});
+
+</script>
+</body>
+</html>
